@@ -28,6 +28,21 @@ const client = new Client({
   partials: [Partials.Message, Partials.Channel]
 });
 
+import express from "express";
+const app = express();
+
+app.get("/", (req, res) => {
+  res.send("Bot is running!");
+});
+
+// Render يعطيك PORT تلقائياً
+const PORT = process.env.PORT || 3000;
+
+app.listen(PORT, () => {
+  console.log(`Web server running on port ${PORT}`);
+});
+
+
 // ============ تحميل panel_settings.json ============
 const SETTINGS_FILE = "panel_settings.json";
 let panel_settings = {
@@ -288,3 +303,4 @@ client.on("interactionCreate", async (interaction) => {
 
 // ============= تشغيل البوت =============
 client.login(process.env.TOKEN);
+
